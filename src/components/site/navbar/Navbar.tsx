@@ -6,11 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/cn";
 import { useApp } from "@/components/providers/AppProviders";
-import {
-  MoonIcon,
-  SunIcon,
-  XIcon,
-} from "@/components/icons";
+import { MoonIcon, SunIcon, XIcon } from "@/components/icons";
 
 const links = [
   { href: "#about", label: "Who I Am" },
@@ -29,46 +25,46 @@ export function Navbar() {
   const scrollYRef = React.useRef(0);
 
   React.useEffect(() => setMounted(true), []);
-  React.useEffect(() => {
-    if (open) {
-      scrollYRef.current = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollYRef.current}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      const y = scrollYRef.current;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      if (y) window.scrollTo(0, y);
-    }
-    return () => {
-      const y = scrollYRef.current;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      if (y) window.scrollTo(0, y);
-    };
-  }, [open]);
-  React.useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  // React.useEffect(() => {
+  //   if (open) {
+  //     scrollYRef.current = window.scrollY;
+  //     document.body.style.position = "fixed";
+  //     document.body.style.top = `-${scrollYRef.current}px`;
+  //     document.body.style.left = "0";
+  //     document.body.style.right = "0";
+  //     document.body.style.width = "100%";
+  //     document.body.style.overflow = "hidden";
+  //     document.documentElement.style.overflow = "hidden";
+  //   } else {
+  //     const y = scrollYRef.current;
+  //     document.body.style.position = "";
+  //     document.body.style.top = "";
+  //     document.body.style.left = "";
+  //     document.body.style.right = "";
+  //     document.body.style.width = "";
+  //     document.body.style.overflow = "";
+  //     document.documentElement.style.overflow = "";
+  //     if (y) window.scrollTo(0, y);
+  //   }
+  //   return () => {
+  //     const y = scrollYRef.current;
+  //     document.body.style.position = "";
+  //     document.body.style.top = "";
+  //     document.body.style.left = "";
+  //     document.body.style.right = "";
+  //     document.body.style.width = "";
+  //     document.body.style.overflow = "";
+  //     document.documentElement.style.overflow = "";
+  //     if (y) window.scrollTo(0, y);
+  //   };
+  // }, [open]);
+  // React.useEffect(() => {
+  //   const onKey = (e: KeyboardEvent) => {
+  //     if (e.key === "Escape") setOpen(false);
+  //   };
+  //   window.addEventListener("keydown", onKey);
+  //   return () => window.removeEventListener("keydown", onKey);
+  // }, []);
 
   const isLight = mounted && theme === "light";
   const toggleTheme = React.useCallback(
@@ -77,29 +73,62 @@ export function Navbar() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-black/10 bg-background/70 backdrop-blur-xl dark:border-white/10">
+    <header suppressHydrationWarning className="sticky top-0 z-50 border-b border-black/10 bg-background/70 backdrop-blur-xl dark:border-white/10">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={registerLogoClick}
             className={cn(
-              "group relative rounded-2xl px-3 py-2 text-sm font-medium tracking-wide",
-              "glass grain",
-              "transition-transform active:scale-[0.98]",
+              "group flex items-center gap-2.5 relative rounded-2xl px-2 py-1",
+              "transition-all active:scale-[0.95]",
             )}
-            aria-label="Home (click multiple times for easter egg)"
+            aria-label="Home"
           >
-            <span className="relative z-10">
-              <span className="text-soft">uzair</span>
-              <span className="text-muted">.</span>
-              <span className="text-soft">dev</span>
-            </span>
-            <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity group-hover:opacity-100">
-              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500/20 via-cyan-400/10 to-pink-400/15" />
-            </span>
-          </button>
+            {/* RU Aesthetic Italic Logo */}
+            <div className="relative flex h-10 items-center justify-center overflow-hidden">
+              <svg
+                viewBox="0 0 100 40"
+                className="h-8 w-auto fill-none stroke-current transition-all duration-500 group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.8)]"
+              >
+                {/* R Character - Italic & Sharp */}
+                <motion.path
+                  d="M20 35L35 5H55C65 5 70 12 65 20C60 28 50 28 45 28L40 28M42 28L55 35"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-violet-600 dark:text-violet-400"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5 }}
+                />
+                {/* U Character - Nested/Connected style */}
+                <motion.path
+                  d="M65 15L60 28C58 35 68 38 75 35L85 10"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-cyan-500 dark:text-cyan-300"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5 }}
+                />
+              </svg>
+            </div>
 
+            {/* Optional: Simple Divider and Text */}
+            <div className="flex flex-col items-start">
+              <span className="text-[15px] font-bold tracking-tight italic bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent group-hover:from-cyan-500 group-hover:to-violet-600 transition-all duration-500">
+                {"Uzair"}
+              </span>
+              <span className="text-[9px] font-medium uppercase tracking-[0.3em] text-muted-foreground/50 leading-none">
+                {"Developer"}
+              </span>
+            </div>
+
+            {/* Background Glow on Hover */}
+            <span className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-tr from-violet-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </button>
           <nav className="hidden items-center gap-1 md:flex">
             {links.map((l) => (
               <Link
@@ -121,7 +150,9 @@ export function Navbar() {
               "glass grain rounded-xl p-2 text-soft",
               "transition hover:bg-black/5 active:scale-[0.98] dark:hover:bg-white/5",
             )}
-            aria-label={isLight ? "Switch to dark theme" : "Switch to light theme"}
+            aria-label={
+              isLight ? "Switch to dark theme" : "Switch to light theme"
+            }
           >
             {isLight ? (
               <SunIcon className="h-4 w-4" />
@@ -143,7 +174,10 @@ export function Navbar() {
             >
               <motion.span
                 className="absolute left-0 top-0.5 h-[2px] w-5 rounded bg-current"
-                variants={{ open: { rotate: 45, y: 6 }, closed: { rotate: 0, y: 0 } }}
+                variants={{
+                  open: { rotate: 45, y: 6 },
+                  closed: { rotate: 0, y: 0 },
+                }}
               />
               <motion.span
                 className="absolute left-0 top-[7px] h-[2px] w-5 rounded bg-current"
@@ -151,7 +185,10 @@ export function Navbar() {
               />
               <motion.span
                 className="absolute left-0 top-[13px] h-[2px] w-5 rounded bg-current"
-                variants={{ open: { rotate: -45, y: -6 }, closed: { rotate: 0, y: 0 } }}
+                variants={{
+                  open: { rotate: -45, y: -6 },
+                  closed: { rotate: 0, y: 0 },
+                }}
               />
             </motion.span>
           </button>
@@ -177,7 +214,9 @@ export function Navbar() {
               transition={{ duration: 0.42, ease: [0.42, 0, 0.2, 1] }}
             >
               <div className="mb-6 flex items-center justify-between">
-                <div className="text-sm font-semibold text-white">Navigation</div>
+                <div className="text-sm font-semibold text-white">
+                  Navigation
+                </div>
                 <button
                   type="button"
                   className="rounded-lg p-2 text-white/80 transition hover:bg-white/10"
@@ -207,4 +246,3 @@ export function Navbar() {
     </header>
   );
 }
-

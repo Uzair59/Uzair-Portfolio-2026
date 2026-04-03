@@ -44,10 +44,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-html,
-body {
-  height: 100%;
-}
+
 
 body {
   background:
@@ -56,7 +53,6 @@ body {
     radial-gradient(620px 260px at 72% 100%, color-mix(in oklab, rgb(var(--accent-c)) 18%, transparent), transparent 68%),
     rgb(var(--bg));
   background-size: 120% 120%, 120% 120%, 120% 120%, auto;
-  animation: bg-shift 20s ease-in-out infinite;
   color: rgb(var(--fg));
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -90,7 +86,8 @@ body {
   box-shadow: 0 1px 0
       color-mix(in oklab, rgb(var(--border)) 10%, transparent),
     0 24px 80px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: background-color 250ms ease, border-color 250ms ease,
     box-shadow 250ms ease;
 }

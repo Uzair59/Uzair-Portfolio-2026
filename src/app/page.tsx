@@ -22,7 +22,7 @@ const AMA = dynamic(
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="">
       <Hero />
       <About />
       <Skills />
@@ -34,7 +34,8 @@ export default function Home() {
       <footer className="border-t border-black/10 bg-black/5 dark:border-white/10 dark:bg-black/20">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-10 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <div>
-            © {new Date().getFullYear()} {site.name}. Built with Next.js + Motion.
+            © {new Date().getFullYear()} {site.name}. Built with Next.js +
+            Framer Motion.
           </div>
           <div className="flex gap-4">
             <a

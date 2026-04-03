@@ -23,6 +23,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
         style={{
           background:
             "radial-gradient(circle at 30% 20%, rgba(37,99,235,.55), transparent 55%), radial-gradient(circle at 70% 60%, rgba(34,211,238,.50), transparent 55%), radial-gradient(circle at 30% 70%, rgba(76,29,149,.32), transparent 58%)",
+          willChange: "transform",
         }}
         animate={
           reduce
@@ -44,6 +45,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
         style={{
           background:
             "radial-gradient(circle at 40% 40%, rgba(34,211,238,.40), transparent 58%), radial-gradient(circle at 70% 55%, rgba(37,99,235,.40), transparent 60%)",
+          willChange: "transform",
         }}
         animate={
           reduce

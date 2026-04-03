@@ -6,34 +6,34 @@ export type Skill = {
 
 export const skills: Skill[] = [
   {
-    name: "Next.js (App Router)",
+    name: "React.js & Next.js",
     level: "Expert",
-    summary: "RSC patterns, routing, caching, performance, and production UI.",
+    summary: "2.5+ years building dynamic, responsive, and highly performant web applications.",
   },
   {
-    name: "TypeScript",
+    name: "Redux & RTK Query",
     level: "Expert",
-    summary: "Typed APIs, DX-first component design, and reliable refactors.",
+    summary: "Integrated and optimized APIs resulting in more efficient data handling.",
+  },
+  {
+    name: "React Native",
+    level: "Proficient",
+    summary: "Mobile development experience utilizing Tailwind for UI and Axios for APIs.",
   },
   {
     name: "Tailwind CSS",
     level: "Advanced",
-    summary: "Design tokens, responsive systems, and tasteful glassmorphism.",
+    summary: "Implemented cutting-edge UI/UX designs seamlessly across all projects.",
   },
   {
-    name: "Framer Motion",
+    name: "TypeScript & JavaScript",
     level: "Advanced",
-    summary: "Stagger, scroll reveal, layout transitions, and micro-interactions.",
+    summary: "Extensive experience using Vanilla JS and modern ES+ features.",
   },
   {
-    name: "Accessibility",
-    level: "Proficient",
-    summary: "Keyboard UX, semantics, ARIA, and motion-reduced alternatives.",
-  },
-  {
-    name: "Performance",
+    name: "Git & Jira",
     level: "Advanced",
-    summary: "Image + bundle optimization, profiling, and interaction smoothness.",
+    summary: "Collaborated with cross-functional teams in agile environments.",
   },
 ];
 

@@ -53,6 +53,7 @@ export function Hero() {
                 style={{
                   left: `${(i * 19) % 100}%`,
                   top: `${(i * 31) % 100}%`,
+                  willChange: "transform, opacity",
                 }}
                 animate={
                   reduce
@@ -145,28 +146,34 @@ export function Hero() {
             </motion.div>
 
             <div className="order-1 md:order-2">
-              <motion.div
-                className="relative mx-auto w-full max-w-[360px]"
-                initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.15,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                style={reduce ? undefined : { y: parallaxY }}
-              >
-                <div
+              <div className="relative mx-auto w-full max-w-90">
+                {/* Static Blur separated from the parallax node below */}
+                <motion.div
                   aria-hidden
-                  className="pointer-events-none absolute -inset-7 rounded-full bg-gradient-to-br from-sky-500/40 via-cyan-400/25 to-blue-500/30 blur-3xl"
+                  className="pointer-events-none absolute -inset-7 rounded-full bg-linear-to-br from-sky-500/40 via-cyan-400/25 to-blue-500/30 blur-3xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.15 }}
                 />
+                
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.15,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  style={reduce ? undefined : { y: parallaxY }}
+                >
                 <div className="relative mx-auto aspect-square w-[86%] overflow-hidden rounded-full ring-2 ring-white/20 shadow-[0_30px_80px_rgba(0,0,0,.45)]">
                   <Image
-                    src="/uzair-photo.png"
+                    src="/uzair-cartoonish.png"
                     alt="Uzair profile"
                     fill
                     sizes="(max-width: 768px) 80vw, 360px"
-                    className="object-cover object-center saturate-[1.06] contrast-[1.05] brightness-[1.04]"
+                    className="object-cover  object-top saturate-[1.06] contrast-[1.05] brightness-[1.04]"
                     priority
                   />
                   <div
@@ -174,7 +181,8 @@ export function Hero() {
                     className="absolute inset-0 bg-[radial-gradient(circle_at_52%_22%,rgba(255,255,255,.2),transparent_36%),linear-gradient(to_top,rgba(0,0,0,.18),transparent_35%)]"
                   />
                 </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>

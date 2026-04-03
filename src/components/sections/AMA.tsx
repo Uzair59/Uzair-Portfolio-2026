@@ -10,35 +10,49 @@ import { SendIcon } from "@/components/icons";
 type Msg = { id: string; role: "user" | "assistant"; content: string };
 
 const starters = [
-  "Which project best highlights your frontend skills?",
-  "What is your current tech stack?",
-  "How do you approach performance optimization?",
+  "Why should we hire you as a Frontend Developer?",
+  "What are your core technical strengths?",
+  "Can you explain your role at Code Experts?",
+  "How do you handle API integration and State Management?",
+  "Do you have experience with Mobile Development?",
+  "How did you build the Amazon FBA or BSM projects?",
 ];
 
 function mockReply(questionRaw: string) {
   const q = questionRaw.toLowerCase();
-  if (q.includes("project")) {
-    return "Glass Dashboard is the best representation of my frontend skillset. It combines reusable architecture, interaction quality, and performance-focused rendering decisions.";
+  
+  if (q.includes("hire") || q.includes("why")) {
+    return "With 2.5+ years of intensive experience in React.js and Next.js, and a keen eye for cutting-edge UI/UX design (using Tailwind & Framer Motion), I can efficiently translate complex requirements into scalable, clean, and production-ready architectures.";
   }
-  if (q.includes("stack") || q.includes("tech")) {
-    return "My core stack is Next.js (App Router), TypeScript, Tailwind CSS, and Framer Motion. I focus on scalable UI architecture and production-level DX.";
+  if (q.includes("strength") || q.includes("tech") || q.includes("stack")) {
+    return "My core strengths are React.js, Next.js, TypeScript, and Redux (specifically RTK Query). I also heavily emphasize responsive, highly interactive web applications built with Tailwind CSS.";
   }
-  if (q.includes("performance")) {
-    return "I optimize by reducing re-renders, using smart component boundaries, lazy-loading where useful, and shipping motion that stays smooth even on low-end devices.";
+  if (q.includes("code experts")) {
+    return "At Code Experts (Jan 2023 - May 2025), I led the UI development for high-traffic platforms like the FBA website and Backstage Members (BSM). I closely collaborated with backend and QA teams to ensure iterative enhancements.";
   }
-  if (q.includes("contact") || q.includes("hire")) {
-    return `You can reach me directly at ${site.socials.email}.`;
+  if (q.includes("api") || q.includes("state")) {
+    return "I primarily use RTK Query for state management and API integration. It allows me to handle complex server states efficiently, ensuring smooth data handling and reducing unnecessary API calls.";
   }
-  return "Great question. I focus on frontend engineering that balances visual quality, maintainability, and speed. Ask me about projects, stack, or performance for specifics.";
+  if (q.includes("mobile") || q.includes("native")) {
+    return "Yes, I have 8 months of hands-on experience in React Native development. I successfully utilized Tailwind CSS for the mobile UI and Axios for seamless cross-device API integrations.";
+  }
+  if (q.includes("fba") || q.includes("bsm") || q.includes("project")) {
+    return "For FBA and BSM, I implemented fully responsive admin and user interfaces with Next.js, ensuring seamless data flow with RTK Query and creating engaging aesthetics with Framer Motion.";
+  }
+  if (q.includes("contact") || q.includes("email")) {
+    return `You can reach me directly at ${site.socials.email} or call +923100571321.`;
+  }
+  
+  return "That's a great question! I focus on building premium web applications that prioritize visual finesse, robust data integration with RTK Query, and fast performance.";
 }
 
 // Helper function to generate unique IDs
 function generateId(): string {
   // Try to use crypto.randomUUID first
-  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
     return crypto.randomUUID();
   }
-  
+
   // Fallback to timestamp + random string
   return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}-${Math.random().toString(36).substring(2, 15)}`;
 }
@@ -55,28 +69,34 @@ export function AMA() {
   const [typing, setTyping] = React.useState(false);
   const listRef = React.useRef<HTMLDivElement | null>(null);
 
-  React.useEffect(() => {
-    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages, typing]);
+  // React.useEffect(() => {
+  //   listRef.current?.scrollTo({
+  //     top: listRef.current.scrollHeight,
+  //     // behavior: "smooth",
+  //   });
+  // }, [messages, typing]);
 
-  const send = React.useCallback(async (raw: string) => {
-    const text = raw.trim();
-    if (!text || typing) return;
+  const send = React.useCallback(
+    async (raw: string) => {
+      const text = raw.trim();
+      if (!text || typing) return;
 
-    const userMsg: Msg = { id: generateId(), role: "user", content: text };
-    setMessages((prev) => [...prev, userMsg]);
-    setValue("");
-    setTyping(true);
+      const userMsg: Msg = { id: generateId(), role: "user", content: text };
+      setMessages((prev) => [...prev, userMsg]);
+      setValue("");
+      setTyping(true);
 
-    await new Promise((r) => setTimeout(r, 380));
-    const assistantMsg: Msg = {
-      id: generateId(),
-      role: "assistant",
-      content: mockReply(text),
-    };
-    setMessages((prev) => [...prev, assistantMsg]);
-    setTyping(false);
-  }, [typing]);
+      await new Promise((r) => setTimeout(r, 380));
+      const assistantMsg: Msg = {
+        id: generateId(),
+        role: "assistant",
+        content: mockReply(text),
+      };
+      setMessages((prev) => [...prev, assistantMsg]);
+      setTyping(false);
+    },
+    [typing],
+  );
 
   return (
     <Section
@@ -86,13 +106,18 @@ export function AMA() {
       subtitle="Mock AI chat with predefined intelligent responses about my work."
     >
       <div className="grid gap-4 lg:grid-cols-[1fr_.8fr]">
-        <div className="glass grain overflow-hidden rounded-[28px]">
+        <div suppressHydrationWarning className="glass grain overflow-hidden rounded-[28px]">
           <div className="flex items-center justify-between border-b border-black/10 bg-black/5 px-5 py-4 dark:border-white/10 dark:bg-white/5">
-            <div className="text-sm font-medium text-soft">Portfolio Assistant</div>
-            <div className="text-xs text-muted">Mock AI</div>
+            <div className="text-sm font-medium text-soft">
+              {"Portfolio Assistant"}
+            </div>
+            <div className="text-xs text-muted">{"Mock AI"}</div>
           </div>
 
-          <div ref={listRef} className="max-h-[420px] space-y-3 overflow-y-auto px-5 py-4">
+          <div
+            ref={listRef}
+            className="max-h-[420px] space-y-3 overflow-y-auto px-5 py-4"
+          >
             <AnimatePresence initial={false}>
               {messages.map((m) => (
                 <motion.div
@@ -114,7 +139,7 @@ export function AMA() {
             </AnimatePresence>
             {typing ? (
               <div className="max-w-[70%] rounded-2xl border border-black/10 bg-black/5 px-4 py-3 text-sm text-muted dark:border-white/10 dark:bg-white/5">
-                Thinking<span className="blink">…</span>
+                {"Thinking"}<span className="blink">{"…"}</span>
               </div>
             ) : null}
           </div>
@@ -145,8 +170,10 @@ export function AMA() {
           </form>
         </div>
 
-        <div className="glass grain rounded-[28px] p-6">
-          <div className="text-sm font-semibold text-soft">Try these prompts</div>
+        <div suppressHydrationWarning className="glass grain rounded-[28px] p-6">
+          <div className="text-sm font-semibold text-soft">
+            {"Try these prompts"}
+          </div>
           <div className="mt-4 grid gap-2">
             {starters.map((s) => (
               <button
