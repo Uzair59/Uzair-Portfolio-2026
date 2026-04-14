@@ -19,12 +19,21 @@ export function Contact() {
     if (status === "sending") return;
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: name,
+          email: email,
+          message: message,
+        }),
       });
-      if (!res.ok) throw new Error("bad");
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error("bad");
       setStatus("sent");
       setName("");
       setEmail("");
@@ -110,9 +119,9 @@ export function Contact() {
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-muted">
               {status === "sent"
-                ? "Message queued (mock). Swap /api/contact with a provider."
+                ? "Message sent successfully! I'll get back to you soon."
                 : status === "error"
-                  ? "Couldn’t send. Check /api/contact."
+                  ? "Couldn’t send. Please check your config or try again later."
                   : "No spam. No fuss."}
             </div>
             <button

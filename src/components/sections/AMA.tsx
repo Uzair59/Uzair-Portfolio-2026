@@ -12,10 +12,10 @@ type Msg = { id: string; role: "user" | "assistant"; content: string };
 const starters = [
   "Why should we hire you as a Frontend Developer?",
   "What are your core technical strengths?",
-  "Can you explain your role at Code Experts?",
+  "Can you explain your role at Sigma Digital Solutions?",
   "How do you handle API integration and State Management?",
   "Do you have experience with Mobile Development?",
-  "How did you build the Amazon FBA or BSM projects?",
+  "What projects have you worked on recently?",
 ];
 
 function mockReply(questionRaw: string) {
@@ -27,8 +27,8 @@ function mockReply(questionRaw: string) {
   if (q.includes("strength") || q.includes("tech") || q.includes("stack")) {
     return "My core strengths are React.js, Next.js, TypeScript, and Redux (specifically RTK Query). I also heavily emphasize responsive, highly interactive web applications built with Tailwind CSS.";
   }
-  if (q.includes("code experts")) {
-    return "At Code Experts (Jan 2023 - May 2025), I led the UI development for high-traffic platforms like the FBA website and Backstage Members (BSM). I closely collaborated with backend and QA teams to ensure iterative enhancements.";
+  if (q.includes("sigma digital solutions") || q.includes("sigma")) {
+    return "At Sigma Digital Solutions, I'm involved in developing high-performance frontend applications. I collaborate with cross-functional teams to deliver scalable solutions, implement modern UI/UX designs, and ensure optimal web performance.";
   }
   if (q.includes("api") || q.includes("state")) {
     return "I primarily use RTK Query for state management and API integration. It allows me to handle complex server states efficiently, ensuring smooth data handling and reducing unnecessary API calls.";
@@ -36,8 +36,8 @@ function mockReply(questionRaw: string) {
   if (q.includes("mobile") || q.includes("native")) {
     return "Yes, I have 8 months of hands-on experience in React Native development. I successfully utilized Tailwind CSS for the mobile UI and Axios for seamless cross-device API integrations.";
   }
-  if (q.includes("fba") || q.includes("bsm") || q.includes("project")) {
-    return "For FBA and BSM, I implemented fully responsive admin and user interfaces with Next.js, ensuring seamless data flow with RTK Query and creating engaging aesthetics with Framer Motion.";
+  if (q.includes("project") || q.includes("build") || q.includes("recent")) {
+    return "I've recently contributed to various web platforms where I implemented fully responsive user interfaces with Next.js, ensuring seamless data flow with state management tools and creating engaging aesthetics with framer motion and Tailwind CSS.";
   }
   if (q.includes("contact") || q.includes("email")) {
     return `You can reach me directly at ${site.socials.email} or call +923100571321.`;
