@@ -253,7 +253,7 @@ function ProjectModal({
                   ))}
                 </div>
 
-                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                <div className="mt-6 grid gap-4 md:grid-cols-1">
                   <div className="rounded-[22px] border border-black/10 bg-black/5 p-4 dark:border-white/10 dark:bg-white/5">
                     <div className="text-xs font-medium text-soft">Highlights</div>
                     <ul className="mt-2 space-y-2 text-sm text-muted">
@@ -262,6 +262,7 @@ function ProjectModal({
                       ))}
                     </ul>
                   </div>
+                  {/* 
                   <div className="rounded-[22px] border border-black/10 bg-black/5 p-4 dark:border-white/10 dark:bg-white/5">
                     <div className="text-xs font-medium text-soft">Links</div>
                     <div className="mt-2 space-y-2">
@@ -285,6 +286,7 @@ function ProjectModal({
                       )}
                     </div>
                   </div>
+                  */}
                 </div>
               </div>
             </motion.div>
